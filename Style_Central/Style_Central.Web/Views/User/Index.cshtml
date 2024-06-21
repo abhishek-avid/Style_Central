@@ -1,0 +1,177 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    @* theme *@
+    <link rel="stylesheet" href="../themefolder/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../themefolder/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../themefolder/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../themefolder/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../themefolder/images/favicon.png" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 500px;
+        }
+
+        .form-toggle {
+            margin-top: 10px;
+            text-decoration: underline;
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .brand-logo{
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .brand-name{
+            margin-left: 4%;
+            font-size: 20px;
+            color: #4B49AC;
+        }
+
+        .btn-primary{
+            color: #fff !important;
+            background-color: #4B49AC !important;
+            border-color: #4B49AC !important;
+        }
+
+        .text-primary{
+            cursor: pointer;
+        }
+		.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    top: 55%;
+    position: absolute;
+    z-index: 9999;
+    right: 50%;
+    display: none;
+}
+
+@@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+    </style>
+</head>
+<body>
+<div class="loader"></div>
+    <div class="card" id="loginCard">
+        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="brand-logo">
+                <img src="../themefolder/images/logo-mini.svg" alt="logo">
+                <span class="brand-name">Style-Central</span>
+            </div>
+            <h4 class="pt-4">Hello! let's get started</h4>
+            <h6 class="font-weight-light">Sign in to continue.</h6>
+            <form class="pt-3" id="loginForm">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="Username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" id="Password" placeholder="Password">
+                </div>
+                <div class="mt-3">
+                   @*  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="toggleForm()">SIGN IN</a> *@
+                    <button type="submit" class="btn btn-primary btn-block">SIGN IN</button>
+                </div>
+                <div class="text-center mt-4 font-weight-light">
+                    Don't have an account? <a onclick="toggleForm()" class="text-primary">Create</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="card hidden" id="signupCard">
+        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="brand-logo">
+                <img src="../themefolder/images/logo-mini.svg" alt="logo">
+                <span class="brand-name">Style-Central</span>
+            </div>
+            <h4 class="pt-4">New here?</h4>
+            <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+            <form class="pt-3" id="signupForm">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="newUsername" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control form-control-lg" id="newUserEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" id="newUserPassword" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" id="newUserConfirmPassword" placeholder="Confirm Password">
+                </div>
+               
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
+                </div>
+                <div class="text-center mt-4 font-weight-light">
+                    Already have an account? <a onclick ="toggleForm()" class="text-primary">Login</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS (optional for dropdowns, modals, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+    <script src="~/js/login.js"></script>
+
+</body>
+</html>

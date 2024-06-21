@@ -1,0 +1,136 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var isAdmin = Context.Session.GetInt32("IsAdmin");
+}
+<input type="hidden" id="isAdmin" value="@isAdmin" />
+<div class="main main-raised">
+    <div class="container">
+        <div class="card card-plain">
+            <div class="card-body">
+                <h4 class="card-title">New Product List</h4>
+                @if (isAdmin == 1)
+                {
+                    <!-- Button to Open Modal -->
+                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#newproductModal">
+                        Add New Product
+                    </button>
+                }
+                <div class="table-responsive">
+                    <div class="table table-shopping">
+                        <table id="newproductTable" class="table table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Product Modal -->
+<div class="modal fade" id="newproductModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Add New Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm" novalidate>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="productname" required>
+                        <div class="invalid-feedback">
+                            Please enter a name.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="productdescription" required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter a description.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price ($)</label>
+                        <input type="number" step="0.01" class="form-control" id="productprice" required min="0">
+                        <div class="invalid-feedback">
+                            Please enter a valid price (greater than 0).
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="productstock" required min="1">
+                        <div class="invalid-feedback">
+                            Please enter a valid stock (greater than 0).
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="productEditForm" novalidate>
+                    <input type="hidden" class="form-control" id="editproductId" required>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="editproductName" required>
+                        <div class="invalid-feedback">
+                            Please enter a name.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="editproductDescription" required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter a description.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price ($)</label>
+                        <input type="number" step="0.01" class="form-control" id="editproductPrice" required min="0">
+                        <div class="invalid-feedback">
+                            Please enter a valid price (greater than 0).
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="editproductStock" required min="1">
+                        <div class="invalid-feedback">
+                            Please enter a valid stock (greater than 0).
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Edit Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/product.js"></script>
